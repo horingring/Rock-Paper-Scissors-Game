@@ -14,6 +14,7 @@
         .rect{
             width: 15em;
             height: 8em;
+            cursor: pointer;
             border: 3px solid gray;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 2em;
@@ -23,7 +24,7 @@
             height: 10px;
         }
 
-        
+
         /* 이 블럭 안에 있는 이미지들을 가운데로 정렬하고싶음 */
         #mainBlock{     
             text-align: center;
@@ -33,28 +34,79 @@
 <body>
     <div id="wrapper">
         <div class="row">
-            <div class="rect">2인용으로</div>
+            <div class="rect" id="jsPlayerNumber">2인용으로</div>
         </div>
         <div class="row" id="mainBlock">
             <div class="col-md-4" style="width: 30em; height: 30em;">
-                <img src="./img/Rock.png.png" class="Painting">
+                <img src="./img/Rock.png" class="Painting" id="jsImage1">
             </div>
             <div class="col-md-4" style="background-color: white; height: 39px;"></div>
             <div class="col-md-4" style="width: 30em; height: 30em;">
-                <img src="./img/Rock.png.png" class="Painting">            
+                <img src="./img/Rock.png" class="Painting">            
             </div>
         </div>
         <div class="upDownSpace"></div>
         <div class="row">
-            <div class="rect">시작하기</div>
+            <div class="rect" id="jsStart">&nbsp;&nbsp;시작하기</div>
         </div>
         <div class="upDownSpace"></div>
         <div class="row">
-            <div class="rect">전적기록</div>
+            <div class="rect">&nbsp;&nbsp;전적기록</div>
         </div>
     </div>
 
     <script>
+        var playerNumber = document.getElementById('jsPlayerNumber');        
+        var startBtn = document.getElementById('jsStart');
+        var img = document.getElementById('jsImage1');
+
+        function changePlayerNum(event){
+            if(playerNumber.innerText === '2인용으로'){
+                playerNumber.innerText = '1인용으로';
+                setColor();
+            }else{
+                playerNumber.innerText = '2인용으로';
+                setColor();
+            } 
+        }
+
+        function setColor(){
+            if(playerNumber.innerText === '2인용으로'){
+                playerNumber.style.backgroundColor = 'yellow';
+                playerNumber.style.color = 'blue';
+            }else{
+                playerNumber.style.backgroundColor = 'black';
+                playerNumber.style.color = 'white';
+            }
+        }
+
+        function clickStart(event){
+            setInterval(changeImg,100);
+        }
+
+        function changeImg(){
+            if(img.id==='jsImage1'){
+                img.id = 'jsImage2';
+                img.src = './img/Paper.png';
+            }else if(img.id === 'jsImage2'){
+                img.id = 'jsImage3';
+                img.src = './img/Scissors.png';
+            }else{
+                img.id = 'jsImage1';
+                img.src = './img/Rock.png';
+            }
+        }
+
+        playerNumber.addEventListener('click',changePlayerNum);
+        startBtn.addEventListener('click',clickStart);
+
+
+
+        function init(){
+            setColor();
+        }
+
+        init();
         
     </script>
 </body>
