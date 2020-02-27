@@ -4,17 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <style>
+        .Painting{
+            width: 30em;
+            height: 30em;
+        }
+
+        .rect{
+            width: 15em;
+            height: 8em;
+            border: 3px solid gray;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2em;
+        }
+
+        .upDownSpace{
+            height: 10px;
+        }
+
+        
+        /* 이 블럭 안에 있는 이미지들을 가운데로 정렬하고싶음 */
+        #mainBlock{     
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <div class="space"></div>
-        <div class="rect"></div>
-        <img >
-        <div></div>
-        <img>
-        <div class="space"></div>
-        <div class="rect"></div>
-        <div class="rect"></div>
+    <div id="wrapper">
+        <div class="row">
+            <div class="rect">2인용으로</div>
+        </div>
+        <div class="row" id="mainBlock">
+            <div class="col-md-4" style="width: 30em; height: 30em;">
+                <img src="./img/Rock.png.png" class="Painting">
+            </div>
+            <div class="col-md-4" style="background-color: white; height: 39px;"></div>
+            <div class="col-md-4" style="width: 30em; height: 30em;">
+                <img src="./img/Rock.png.png" class="Painting">            
+            </div>
+        </div>
+        <div class="upDownSpace"></div>
+        <div class="row">
+            <div class="rect">시작하기</div>
+        </div>
+        <div class="upDownSpace"></div>
+        <div class="row">
+            <div class="rect">전적기록</div>
+        </div>
     </div>
+
+    <script>
+        
+    </script>
 </body>
 </html>
