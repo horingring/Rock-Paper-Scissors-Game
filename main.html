@@ -33,6 +33,7 @@
 </head>
 <body>
     <div id="wrapper">
+        <h1>가위바위보 게임</h1>
         <div class="row">
             <div class="rect" id="jsPlayerNumber">2인용으로</div>
         </div>
@@ -42,12 +43,12 @@
             </div>
             <div class="col-md-4" style="background-color: white; height: 39px;"></div>
             <div class="col-md-4" style="width: 30em; height: 30em;">
-                <img src="./img/Rock.png" class="Painting">            
+                <img src="./img/Rock.png" class="Painting" id="jsImage4">            
             </div>
         </div>
         <div class="upDownSpace"></div>
         <div class="row">
-            <div class="rect" id="jsStart">&nbsp;&nbsp;시작하기</div>
+            <div class="rect" id="jsStart">시작하기</div>
         </div>
         <div class="upDownSpace"></div>
         <div class="row">
@@ -58,7 +59,12 @@
     <script>
         var playerNumber = document.getElementById('jsPlayerNumber');        
         var startBtn = document.getElementById('jsStart');
-        var img = document.getElementById('jsImage1');
+        var img1 = document.getElementById('jsImage1');
+        var img2 = document.getElementById('jsImage4');
+
+        var myTimer1 = null;
+        var myTimer2 = null;
+
 
         function changePlayerNum(event){
             if(playerNumber.innerText === '2인용으로'){
@@ -81,19 +87,44 @@
         }
 
         function clickStart(event){
-            setInterval(changeImg,100);
+            if(startBtn.innerText === '시작하기'){
+                myTimer1 = setInterval(changeImg1,45);
+                myTimer2 = setInterval(changeImg2,35);
+                startBtn.innerText = 'S T O P !!!';
+                startBtn.style.backgroundColor = 'red';
+                startBtn.style.color = 'yellow';
+            }else{
+                clearInterval(myTimer1);
+                clearInterval(myTimer2);
+                startBtn.innerText = '시작하기';
+                startBtn.style.backgroundColor = 'skyblue';
+                startBtn.style.color = 'blue';
+            }
         }
 
-        function changeImg(){
-            if(img.id==='jsImage1'){
-                img.id = 'jsImage2';
-                img.src = './img/Paper.png';
-            }else if(img.id === 'jsImage2'){
-                img.id = 'jsImage3';
-                img.src = './img/Scissors.png';
+        function changeImg1(){
+            if(img1.id==='jsImage1'){
+                img1.id = 'jsImage2';
+                img1.src = './img/Paper.png';
+            }else if(img1.id === 'jsImage2'){
+                img1.id = 'jsImage3';
+                img1.src = './img/Scissors.png';
             }else{
-                img.id = 'jsImage1';
-                img.src = './img/Rock.png';
+                img1.id = 'jsImage1';
+                img1.src = './img/Rock.png';
+            }
+        }
+
+        function changeImg2(){
+            if(img2.id==='jsImage4'){
+                img2.id = 'jsImage5';
+                img2.src = './img/Paper.png';
+            }else if(img2.id === 'jsImage5'){
+                img2.id = 'jsImage6';
+                img2.src = './img/Scissors.png';
+            }else{
+                img2.id = 'jsImage4';
+                img2.src = './img/Rock.png';
             }
         }
 
