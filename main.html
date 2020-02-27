@@ -39,11 +39,13 @@
         </div>
         <div class="row" id="mainBlock">
             <div class="col-md-4" style="width: 30em; height: 30em;">
-                <img src="./img/Rock.png" class="Painting" id="jsImage1">
+                <img src="./img/Rock.png" class="Painting" id="jsRock1">
             </div>
-            <div class="col-md-4" style="background-color: white; height: 39px;"></div>
+            <div class="col-md-4" style="height: 30em;">
+                <img src="./img/white.png" id="nothing">
+            </div>
             <div class="col-md-4" style="width: 30em; height: 30em;">
-                <img src="./img/Rock.png" class="Painting" id="jsImage4">            
+                <img src="./img/Rock.png" class="Painting" id="jsRock2">            
             </div>
         </div>
         <div class="upDownSpace"></div>
@@ -59,8 +61,9 @@
     <script>
         var playerNumber = document.getElementById('jsPlayerNumber');        
         var startBtn = document.getElementById('jsStart');
-        var img1 = document.getElementById('jsImage1');
-        var img2 = document.getElementById('jsImage4');
+        var img1 = document.getElementById('jsRock1');
+        var img2 = document.getElementById('jsRock2');
+        var winAndLose = document.getElementById('nothing');
 
         var myTimer1 = null;
         var myTimer2 = null;
@@ -86,6 +89,34 @@
             }
         }
 
+        function showMeTheResult(){
+            if(img1.id==='jsRock1'){
+                if(img2.id==='jsRock2'){
+                    winAndLose.src = "./img/Draw.png";
+                }else if(img2.id === 'jsPaper2'){
+                    winAndLose.src = "./img/Lose.png";
+                }else{
+                    winAndLose.src = "./img/Win.png";
+                }
+            }else if(img1.id==='jsPaper1'){
+                if(img2.id==='jsRock2'){
+                    winAndLose.src = "./img/Win.png";
+                }else if(img2.id === 'jsPaper2'){
+                    winAndLose.src = "./img/Draw.png";
+                }else{
+                    winAndLose.src = "./img/Lose.png";
+                }
+            }else{
+                if(img2.id==='jsRock2'){
+                    winAndLose.src = "./img/Lose.png";
+                }else if(img2.id === 'jsPaper2'){
+                    winAndLose.src = "./img/Win.png";
+                }else{
+                    winAndLose.src = "./img/Draw.png";
+                }
+            }
+        }
+
         function clickStart(event){
             if(startBtn.innerText === '시작하기'){
                 myTimer1 = setInterval(changeImg1,45);
@@ -96,6 +127,7 @@
             }else{
                 clearInterval(myTimer1);
                 clearInterval(myTimer2);
+                showMeTheResult();
                 startBtn.innerText = '시작하기';
                 startBtn.style.backgroundColor = 'skyblue';
                 startBtn.style.color = 'blue';
@@ -103,27 +135,27 @@
         }
 
         function changeImg1(){
-            if(img1.id==='jsImage1'){
-                img1.id = 'jsImage2';
+            if(img1.id==='jsRock1'){
+                img1.id = 'jsPaper1';
                 img1.src = './img/Paper.png';
-            }else if(img1.id === 'jsImage2'){
-                img1.id = 'jsImage3';
+            }else if(img1.id === 'jsPaper1'){
+                img1.id = 'jsScissors1';
                 img1.src = './img/Scissors.png';
             }else{
-                img1.id = 'jsImage1';
+                img1.id = 'jsRock1';
                 img1.src = './img/Rock.png';
             }
         }
 
         function changeImg2(){
-            if(img2.id==='jsImage4'){
-                img2.id = 'jsImage5';
+            if(img2.id==='jsRock2'){
+                img2.id = 'jsPaper2';
                 img2.src = './img/Paper.png';
-            }else if(img2.id === 'jsImage5'){
-                img2.id = 'jsImage6';
+            }else if(img2.id === 'jsPaper2'){
+                img2.id = 'jsScissors2';
                 img2.src = './img/Scissors.png';
             }else{
-                img2.id = 'jsImage4';
+                img2.id = 'jsRock2';
                 img2.src = './img/Rock.png';
             }
         }
